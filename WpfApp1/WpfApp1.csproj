@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="content\**" />
+    <EmbeddedResource Remove="content\**" />
+    <None Remove="content\**" />
+    <Page Remove="content\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="bg.png" />
+    <None Remove="iconfont.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="iconfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

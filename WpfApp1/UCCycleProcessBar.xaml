@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="WpfApp1.UCCycleProcessBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1"
+             mc:Ignorable="d" 
+             d:DesignHeight="340" d:DesignWidth="400" Background="Transparent">
+    <UserControl.Resources>
+        <Style x:Key="BtnInfoStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#43a9c7"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Width}"
+                                Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <TextBlock Text="{TemplateBinding Content}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" 
+                                       Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#2f96b4"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#2a89a4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Viewbox>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="340"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Width="340" Height="340" Name="mainGrid" Background="Transparent">
+            <Path Name="myCycleProcessBar" Data="M170,30 A140,140 0 1 0 170.01,30 " Stroke="#9FB0CA" StrokeThickness="30" 
+                Height="{Binding Height,ElementName=mainGrid}" Width="{Binding Width,ElementName=mainGrid}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Canvas Height="{Binding Height,ElementName=mainGrid}" Width="{Binding Width,ElementName=mainGrid}">
+                <Border  Width="100" Height="100" CornerRadius="50" Background="White" Canvas.Left="120" Canvas.Top="120">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Name="lbMark" Content="&#xe600;" FontFamily="/#iconfont" FontSize="40"
+                            HorizontalAlignment="Center" VerticalAlignment="Bottom"   Foreground="Black" />
+                        <Label Grid.Row="1" Name="lbValue" Content="50%" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="Black" />
+                    </Grid>
+                </Border>
+            </Canvas>
+            <Canvas Name="mainCanvas" Height="{Binding Height,ElementName=mainGrid}" Width="{Binding Width,ElementName=mainGrid}">
+                    <Path Name="myCycleProcessBar1" Data="M170,30 A140,140 0 0 1 160,30 " Stroke="White" StrokeThickness="30" 
+                        StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                        Height="{Binding Height,ElementName=mainGrid}" Width="{Binding Width,ElementName=mainGrid}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    </Path>
+                    <Ellipse Name="Pointer" Width="40" Height="40" Canvas.Left="150" Canvas.Top="10" Fill="White">
+                    <Ellipse.Effect>
+                        <DropShadowEffect ShadowDepth="0" BlurRadius="50" Color="Gray" />
+                    </Ellipse.Effect>
+                </Ellipse>
+                
+            </Canvas>
+        </Grid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Grid.Column="0" Name="btnReduce" Content="&#xe8b1;" FontFamily="/#iconfont" FontSize="30" Width="40" 
+                        Canvas.Left="130" Canvas.Top="350" Style="{StaticResource BtnInfoStyle}" Click="btnReduce_Click"></Button>
+            <Button Grid.Column="1" Name="btnAdd" Content="&#xe726;" FontFamily="/#iconfont" FontSize="30" Width="40" Margin="10 0 0 0"
+                        Canvas.Left="180" Canvas.Top="350" Style="{StaticResource BtnInfoStyle}" Click="btnAdd_Click"></Button>
+        </StackPanel>
+    </Grid>
+    </Viewbox>
+</UserControl>

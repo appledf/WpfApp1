@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="WpfApp1.Instrument"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Ellipse Width="200" Height="200" Fill="Orange" x:Name="backEllipse">
+        </Ellipse>
+        <!--<Ellipse Width="180" Height="180" Fill="Black" Name="frontEllipse"></Ellipse>-->
+        <Canvas Name="mainCanvas" Width="{Binding Width,ElementName=backEllipse}"
+                Height="{Binding Height,ElementName=backEllipse}"></Canvas>
+        <Path Data="" Stroke="White" StrokeThickness="4" Name="circle" RenderTransformOrigin="0.5,0.5"
+              StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+              Width="{Binding Width,ElementName=backEllipse}" Height="{Binding Height,ElementName=backEllipse}">
+            <Path.RenderTransform>
+                <RotateTransform Angle="-45"></RotateTransform>
+            </Path.RenderTransform>
+        </Path>
+        <Path Data="" Fill="Green" Name="pointer" RenderTransformOrigin="0.5,0.5"
+              Width="{Binding Width,ElementName=backEllipse}" Height="{Binding Height,ElementName=backEllipse}">
+            <Path.RenderTransform>
+                <RotateTransform Angle="-45" x:Name="rtPointer"></RotateTransform>
+            </Path.RenderTransform>
+        </Path>
+        <Border Width="20" Height="20" CornerRadius="10">
+            <Border.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="White" Offset="0.583"></GradientStop>
+                    <GradientStop Color="#FF97B5BD" Offset="1"></GradientStop>
+                </RadialGradientBrush>
+            </Border.Background>
+        </Border>
+    </Grid>
+</UserControl>
